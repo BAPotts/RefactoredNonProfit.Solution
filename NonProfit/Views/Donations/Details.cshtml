@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+@model NonProfit.Models.Donation
+
+<h2>Donation Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Money): @Html.DisplayFor(model => model.Money)<h3>
+
+@if(@Model.Donors.Count == 0)
+{
+  <p>This donation does not belong to any donors</p>
+}
+else
+{
+  <h4> Donors for this donation: </h4>
+  <ul>
+  @foreach(var join in Model.Donors)
+  {
+    <li>@join.Donor.Name</li>
+    @using (Html.BeginForm("DeleteCategory", "Donations"))
+    {
+      @Html.Hidden("joinId", @join.DonorDonationId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Donation", "Edit", new { id = Model.DonationId })</p>
+<p>@Html.ActionLink("Delete Donation", "Delete", new { id = Model.DonationId })</p>
+<p>@Html.ActionLink("Add a Donor", "AddDonor", new {id = Model.DonationId})</p>

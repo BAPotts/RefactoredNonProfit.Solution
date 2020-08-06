@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model NonProfit.Models.Donor;
+
+<h2>Donor Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+<ul>
+@if (@Model.Donations.Count == 0)
+{
+  <p>no donations found</p>
+}
+else
+{
+<h4>Donations the Donor has Made:</h4>
+<ul>
+
+@foreach (var join in Model.Donations)
+{
+  <li>@join.Donation.Money</li>
+}
+</ul>
+}
+
+<p>@Html.ActionLink("Back to Donors", "Index")</p>
+<p>@Html.ActionLink("Edit Donor", "Edit", new { id = Model.DonorId })</p>
+<p>@Html.ActionLink("Delete Donor", "Delete", new { id = Model.DonorId })</p>

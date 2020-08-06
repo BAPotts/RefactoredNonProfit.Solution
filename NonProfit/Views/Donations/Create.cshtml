@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model NonProfit.Models.Donation
+
+<h4>Add a new Donation</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Money)
+    @Html.TextBoxFor(model => model.Money)<br><br>
+
+    @Html.Label("Select Donor")
+    @Html.DropDownList("DonorId")<br><br>
+
+    <input type="submit" value="Add new donation" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all donations", "Index")</p>

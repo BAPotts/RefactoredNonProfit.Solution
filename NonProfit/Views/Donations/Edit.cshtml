@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model NonProfit.Models.Donation
+
+<h2>Edit</h2>
+
+<h4>Edit this donation: @Html.DisplayFor(model => model.Money)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.DonationId)
+
+    @Html.LabelFor(model => model.Money)
+    @Html.EditorFor(model => model.Money)
+
+    @Html.Label("Select Donor")
+    @Html.DropDownList("DonorId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to donation list", "Index")</p>
